@@ -3,6 +3,14 @@
     [string]$rgname
 )
 
+import-module azurerm 
+$azureAccountName ="email"
+$azurePassword = ConvertTo-SecureString "Password" -AsPlainText -Force
+
+$psCred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
+
+Add-AzureAccount -Credential $psCred 
+
 $verbosepreference = "continue"
 
 Write-Verbose "working on vm: $vmname in $rgname"
